@@ -1,0 +1,2 @@
+include influxdbuploader/bzt-configs.json
+include influxdbuploader/98-i-config.yml
