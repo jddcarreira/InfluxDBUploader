@@ -279,6 +279,6 @@ class DatapointSerializer(object):
             error_dimensions = copy.deepcopy(tags)
             error_dimensions['rc'] = rcode
             rcnt = item[KPISet.RESP_CODES][rcode]
-            influxdb_data.append({'measurement': 'rc', 'tags': tags, 'time': timestamp, 'fields': {'value': rcnt}})
+            influxdb_data.append({'measurement': 'rc', 'tags': error_dimensions, 'time': timestamp, 'fields': {'value': rcnt}})
 
         return influxdb_data
