@@ -1,6 +1,6 @@
 # InfluxDBUploader 
 
-Taurus plugin to stream results to InfluxDB
+Taurus plugin to stream results to InfluxDB, based on [signalfxUploader](https://github.com/doctornkz/signalfxUploader) from [@doctornkz](https://github.com/doctornkz)
 
 ## Installation
 
