@@ -12,22 +12,26 @@ scenarios:
     default-address: https://example.com:443/
     requests:
     - /
-
 reporting:
-  - module: signalfx
+- module: influxdbuploader
+
+
 
 modules:
   console:
     disable: true
-  signalfx:
-    address: https://<REALM>.signalfx.com  # reporting service address
-    data-address: https://ingest.eu0.signalfx.com/v2/datapoint   # data service address
-    dashboard-url: https://<REALM>.signalfx.com/#/dashboard/<DASHBOARD_ID> # your dashboard for rendering results 
-    project: test_project 
+  influxdbuploader:
+    influxdb-address:   # influxdb address
+    influxdb-port:      # influxdb port
+    influxdb-user:      # influxdb username which can also be defined in envrironemnt variables INFLUXDB_USER
+    influxdb-password:  # influxdb password which can also be defined in envrironemnt variables INFLUXDB_PASSWORD
+    influxdb-database:  # influxdb database
+    dashboard-url:      # grafana dashboard url, like https://<GRAFANA_WEBUI_HOST>/d/<DASHBOARD_ID>/<DASHBOARD_NAME>
+    project:            # custom project name
+    # custom-tags:
+      # key1: value1
+      # key2: value2  
     browser-open: start  # auto-open the report in browser, 
                          # can be "start", "end", "both", "none"
-    send-interval: 5s   # send data each n-th second
+    send-interval: 10s   # send data each n-th second
     timeout: 5s  # connect and request timeout for BlazeMeter API
-    custom-tags:
-      sf_hires: '1' # option to use high resolution SFX metrics
-    token: <SIGNALFX_TOKEN>

@@ -164,11 +164,9 @@ class InfluxDBUploader(Reporter, AggregatorListener, Singletone):
         super(InfluxDBUploader, self).startup()
 
         self.results_url = self._session.dashboard_url + \
-                           '&from=now-15m&to=now' + \
-                           '&var-project=' + \
-                           self.project + \
-                           '&var-id=' + \
-                           self.sess_id + \
+                           '?from=now-15m&to=now' + \
+                           '&var-project=' + self.project + \
+                           '&var-id=' + self.sess_id + \
                            '&refresh=5s'
 
         self.log.info("Started data feeding: %s", self.results_url)
