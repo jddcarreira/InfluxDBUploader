@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="influxdbuploader",
-    version="0.0.1",
+    version="0.1.0",
 
     author=["Oles Pisarenko", "João Carreira"],
     author_email=["doctornkz@ya.ru", "jddcarreira@gmail.com"],
