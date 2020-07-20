@@ -164,13 +164,12 @@ class InfluxDBUploader(Reporter, AggregatorListener, Singletone):
         super(InfluxDBUploader, self).startup()
 
         self.results_url = self._session.dashboard_url + \
-                           '?startTime=-15m&endTime=Now' + \
-                           '&sources%5B%5D=' + \
-                           'project:' + \
+                           '&from=now-15m&to=now' + \
+                           '&var-project=' + \
                            self.project + \
-                           '&sources%5B%5D=id:' + \
+                           '&var-id=' + \
                            self.sess_id + \
-                           '&density=4'
+                           '&refresh=5s'
 
         self.log.info("Started data feeding: %s", self.results_url)
         if self.browser_open in ('start', 'both'):
@@ -279,6 +278,6 @@ class DatapointSerializer(object):
             error_dimensions = copy.deepcopy(tags)
             error_dimensions['rc'] = rcode
             rcnt = item[KPISet.RESP_CODES][rcode]
-            influxdb_data.append({'measurement': 'rc', 'tags': tags, 'time': timestamp, 'fields': {'value': rcnt}})
+            influxdb_data.append({'measurement': 'rc', 'tags': error_dimensions, 'time': timestamp, 'fields': {'value': rcnt}})
 
         return influxdb_data
